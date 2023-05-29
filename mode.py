@@ -55,6 +55,8 @@ def train(args):
     prog_bar = tqdm(total=args.pre_train_epoch, disable= not args.progress_bar, desc='pre_training (training generator)')
     #### Train using L2_loss
     while pre_epoch < args.pre_train_epoch:
+
+        losses_over_epoch = []
         for i, tr_data in enumerate(loader):
             gt = tr_data['GT'].to(device)
             lr = tr_data['LR'].to(device)
@@ -66,9 +68,10 @@ def train(args):
             loss.backward()
             g_optim.step()
 
+            losses_over_epoch.append(loss.item())
             f_batch.write('%04f\n' % loss.item())
 
-        f_epoch.write('%04f\n' % loss.item())
+        f_epoch.write('%04f\n' % np.mean(losses_over_epoch))
         pre_epoch += 1
 
         if args.print_progress_interval is not None and args.print_progress_interval > 0:
@@ -119,7 +122,8 @@ def train(args):
     while fine_epoch < args.fine_train_epoch:
         
         scheduler.step()
-        
+        losses_over_epoch_g = []
+        losses_over_epoch_d = []
         for i, tr_data in enumerate(loader):
             gt = tr_data['GT'].to(device)
             lr = tr_data['LR'].to(device)
@@ -157,9 +161,11 @@ def train(args):
             g_loss.backward()
             g_optim.step()
 
+            losses_over_epoch_g.append(g_loss.item())
+            losses_over_epoch_d.append(d_loss.item())
             f_batch.write('%04f,%04f\n' % (g_loss.item() , d_loss.item()))
         
-        f_epoch.write('%04f,%04f\n' % (g_loss.item() , d_loss.item()))
+        f_epoch.write('%04f,%04f\n' % (np.mean(losses_over_epoch_g) , np.mean(losses_over_epoch_d)))
         fine_epoch += 1
 
         if args.print_progress_interval is not None and args.print_progress_interval > 0:
@@ -237,7 +243,7 @@ def test(args):
             f.write('psnr : %04f \n' % psnr)
             if args.save_result_images:
                 result = Image.fromarray((output * 255.0).astype(np.uint8))
-                result.save('./result_images/res_%04d.png'%i)
+                result.save(f'./result_images/{args.result_images_marker}res_{i :04d}.png')
 
             prog_bar.update(1)
 

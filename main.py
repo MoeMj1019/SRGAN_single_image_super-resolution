@@ -29,6 +29,9 @@ parser.add_argument("--save_each", type = int, default = 0)
 parser.add_argument("--print_progress_interval", type = int, default = 0)
 parser.add_argument("--progress_bar", type = str2bool, default = True)
 parser.add_argument("--save_result_images", type = str2bool, default = True)
+parser.add_argument("--result_images_marker", type = str, default = '')
+
+
 
 
 args = parser.parse_args()
