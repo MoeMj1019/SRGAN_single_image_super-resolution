@@ -4,9 +4,20 @@
 This is a Pytorch implementation for Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network.
 
 - you can train models on your own datasets
-- you can test your models on your own datasets
+- you can test the models on your own datasets
 - you can use the pretrained model provided in the pretrained_models folder
 - you can use any any images for testing, just make sure to change the path in the code accordingly 
+
+## overview of the results
+
+low resolution input image example :  
+![input](overview_images/input_example.png)
+
+results :  
+![results](overview_images/results_example.png)
+
+overview :  
+![overview](overview_images/results_overview.png)
 
 ## Environment Setup
 Open anaconda prompt and cd to the folder where you have your environment.yml file
