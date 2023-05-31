@@ -115,9 +115,9 @@ def inspect_data(HR_path, LR_path, result_path=None, type_end='.png',
                 ax2.xaxis.set_visible(True)
                 ax3.xaxis.set_visible(True)
             if idx == 0:
-                ax1.set_title('HR image')
+                ax1.set_title('GT image')
                 ax2.set_title('result image')
-                ax3.set_title('LR image (cubic x4))')
+                ax3.set_title('LR image (cubic x4)')
 
     else:
 
@@ -144,8 +144,8 @@ def inspect_data(HR_path, LR_path, result_path=None, type_end='.png',
                 ax1.xaxis.set_visible(True)
                 ax2.xaxis.set_visible(True)
             if idx == 0:
-                ax1.set_title('HR')
-                ax2.set_title('LR (cubic x4))')
+                ax1.set_title('GT image')
+                ax2.set_title('LR image (cubic x4)')
     
     plt.tight_layout()
     plt.show()

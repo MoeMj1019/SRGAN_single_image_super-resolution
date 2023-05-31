@@ -1,5 +1,13 @@
 # SRGAN_single_image_super-resolution
 
+## Introduction
+This is a Pytorch implementation for Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network.
+
+- you can train models on your own datasets
+- you can test your models on your own datasets
+- you can use the pretrained model provided in the pretrained_models folder
+- you can use any any images for testing, just make sure to change the path in the code accordingly 
+
 ## Environment Setup
 Open anaconda prompt and cd to the folder where you have your environment.yml file
 - uncomment the line of the environment_name you want to create according to your resources (GPU or CPU)

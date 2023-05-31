@@ -214,7 +214,7 @@ def test(args):
     f = open('./result.txt', 'w')
     psnr_list = []
     
-    prog_bar = tqdm(len(loader), disable= not args.progress_bar, desc='test_only (generating HR images)')
+    prog_bar = tqdm(len(loader), disable= not args.progress_bar, desc='test (generating HR images)')
     with torch.no_grad():
         for i, te_data in enumerate(loader):
             gt = te_data['GT'].to(device)
